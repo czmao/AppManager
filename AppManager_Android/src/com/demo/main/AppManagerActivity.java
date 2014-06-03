@@ -24,6 +24,7 @@ public class AppManagerActivity extends Activity {
 	
 	@Override
 	public void onDestroy(){
+		super.onDestroy(); 
 		unregisterUserPresentReceiver();
 	}
 	
