@@ -11,11 +11,11 @@ import android.test.AndroidTestCase;
 
 public class AppGetterTest extends AndroidTestCase{
 	public static final String TAG = "AppGetterTest";
-	AppGetter AppGetter;
+	AppGetter appGetter;
 	
 	protected void setUp() throws Exception {
 		super.setUp();
-		AppGetter = AppGetter.getInstance(mContext);
+		appGetter = AppGetter.getInstance(mContext);
 	}
 
 	protected void tearDown() throws Exception {
@@ -23,7 +23,14 @@ public class AppGetterTest extends AndroidTestCase{
 	}
 	
 	public void testGetAppList() throws Exception {
-		List<AppInfo> appList = AppGetter.getAppList();
+		List<AppInfo> appList = appGetter.getAppList();
 		Assert.assertNotNull(appList);
+	}
+	
+	public void testFindAppInfoByPackageName() throws Exception {
+		List<AppInfo> appList = appGetter.getAppList();
+		Assert.assertNotNull(appList);
+		AppInfo appManagerTest = appGetter.findAppInfoByPackageName(appList, "com.demo.app.manager.test");
+		Assert.assertNotNull(appManagerTest);
 	}
 }

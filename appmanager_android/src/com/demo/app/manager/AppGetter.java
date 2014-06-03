@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -86,4 +87,33 @@ public class AppGetter {
         Log.d(TAG, app.packageName);
         return appInfo;  
     }
+	
+	public AppInfo findAppInfoByPackageName(List<AppInfo> appList, String packageName){
+		AppInfo appInfo = null;
+		for(AppInfo app : appList){
+			if(app.getPkgName().equalsIgnoreCase(packageName)){
+				appInfo = app;
+			}
+		}
+		return appInfo;
+	}
+	
+	public int getLaunchCountByPackageName(String packageName){
+		int launchCount = 0;
+		List<ApplicationInfo> listAppcations = pm  
+                .getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);
+		for(ApplicationInfo app : listAppcations){
+			if(app.packageName.equalsIgnoreCase(packageName)){
+				launchCount = getLaunchCount(app);
+			}
+		}
+		return launchCount;
+	}
+	
+	public int getLaunchCount(ApplicationInfo app){
+		int launchCount = 0;
+
+		
+		return launchCount;
+	}
 }
